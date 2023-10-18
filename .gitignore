@@ -10,8 +10,7 @@ __pycache__/
 *.so
 
 
-test/
-*test_
+
 # Distribution / packaging
 .Python
 build/

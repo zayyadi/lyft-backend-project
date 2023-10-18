@@ -1,7 +1,7 @@
-from datetime import date
-from abc import ABC, abstractmethod
+from abc import ABC
 from engine.base import Engine
 from battery.base import Battery
+from tires.base import Tires
 
 
 class Car(ABC):
@@ -14,12 +14,12 @@ class Car(ABC):
         self,
         engine: Engine,
         battery: Battery,
+        tires: Tires,
     ) -> None:
         self.engine = engine
         self.battery = battery
-        self.last_service_date = date.fromisoformat(last_service_date)
+        self.tires = tires
 
-    @abstractmethod
     def needs_service(self) -> bool:
         """
         An abstract method that needs to be implemented by any class that inherits from
@@ -32,4 +32,5 @@ class Car(ABC):
         return any(
             self.engine.needs_service(),
             self.battery.needs_service(),
+            self.tires.needs_service(),
         )
